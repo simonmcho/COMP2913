@@ -23,3 +23,7 @@ class Profile extends Component {
 
 
 Props - 
+
+Let vs var
+- let is more scope based...block scope NOT function scope
+- vars are function scope, but not block scope
