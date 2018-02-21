@@ -1,0 +1,25 @@
+JSX - When passing inline attributes, you have the option of passing objects instead of strings:
+
+class Profile extends Component {
+    render() {
+        const name = 'SIMON CHO';
+        const imageWidth = { width: '250px' }; //declaring object
+
+        return (
+            <div>
+                <h1>Profile Page</h1>
+                <div className="sc-name">
+                    <h3>{name}</h3>
+                    <label htmlFor=""></label> 
+                </div>
+                <div className="sc-images">
+                    <img src="./images/civic-typer.jpg" 
+                    style={imageWidth} /> // Passing in imageWidth variable
+                </div>
+            </div>
+        )
+    }
+}
+
+
+Props - 
