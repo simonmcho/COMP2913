@@ -8,43 +8,40 @@ class Images extends Component {
         super(props);
 
         this.state = {
-            border: '3px red solid',
-            borderRock: '3px blue solid',
-            borderPaper: '3px blue solid',
-            borderScissors: '3px blue solid',
-            computerChoice: ''
+            images: [
+                {
+                    name: 'Rock',
+                    src: imageRock,
+                    border: '3px red solid'
+                },
+                {
+                    name: 'Rock',
+                    src: imagePaper,
+                    border: '3px red solid'
+                },
+                {
+                    name: 'Rock',
+                    src: imageScissors,
+                    border: '3px red solid'
+                }
+            ]
         }
 
         this.userSelectedElement = this.userSelectedElement.bind(this);
     }
 
-    userSelectedElement(e) {
-        // if(e.target.name === "rock") {
-        //     this.setState({ 
-        //         selection: e.target.name,
-        //         borderRock: "3px solid yellow",
-        //         borderPaper: this.state.border,
-        //         borderScissors: this.state.border
-        //     });
-        // } else if(e.target.name === "paper") {
-        //     this.setState({ 
-        //         selection: e.target.name,
-        //         borderPaper: "3px solid yellow",
-        //         borderRock: this.state.border,
-        //         borderScissors: this.state.border
-        //     }); 
-        // } else {
-        //     this.setState({ 
-        //         selection: e.target.name,
-        //         borderScissors: "3px solid yellow",
-        //         borderRock: this.state.border,
-        //         borderPaper: this.state.border
-        //     });
-        // }
+    userSelectedElement(choosenImage) {
+
+        const { images } = this.state;
+        
+        const updatedImages = images.map(image => {
+            image.border = choosenImage === image ? '3px yellow solid' : '3px red solid';
+            return image;
+        });
+
         this.setState({
-            border: "3px yellow solid"
-        })
-       
+            images: updatedImages
+        });       
         
     };
 
@@ -56,21 +53,23 @@ class Images extends Component {
     // }
 
     render() {
-    
+        const { images } = this.state;
+
         return (
             <div className="game-images">
-                <div onClick={this.userSelectedElement} style={{ display: "inline-block" }}>
-                    <img name="rock" style={{ width: "250px", height: "250px", border: this.state.border }}src={imageRock} />
-                </div>
-                <div onClick={this.userSelectedElement} style={{ display: "inline-block", marginLeft: "20px" }}>
-                    <img name="paper" style={{ width: "250px", height: "250px", border: this.state.border }}src={imagePaper} />
-                </div>
-                <div onClick={this.userSelectedElement} style={{ display: "inline-block", marginLeft: "20px" }}>
-                    <img name="scissors" style={{ width: "250px", height: "250px", border: this.state.border }}src={imageScissors} />
-                </div>
+            {
+                images.map((image, index) => {
+                    return (
+                        <div key={ `image_${ index }` } onClick={ () => this.userSelectedElement(image)  } style={{ display: "inline-block" }}>
+                            <img name={ image.name } style={{ width: "250px", height: "250px", border: image.border }} src={image.src} />
+                        </div>
+                    );
+                })
+            }
             </div>
         )
     }
+
 }
 
 export default Images;
