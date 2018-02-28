@@ -2,3 +2,7 @@ State - Particular condition that something is in at a specific time
 
 Component Life Cycle 
 - Each component has functions that can called before or after something happens
+
+Remember that setSTate is the method that runs the render of the component
+
+WillReceiveProps method will receive props upon state change because of setState (using the clock example
