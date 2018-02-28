@@ -26,7 +26,7 @@ class CurrentDate extends Component {
     // Runs after render
     componentDidMount() {
         // console.log("AFTER COMPONENT RENDERS ON PAGE");
-        
+            
         setInterval(() => {
 
             //this.state.color = 'green'; // NEVER SET LIKE THIS, BECAUSE YOU NEED TO RUN setState to actually mutate properties and render properly
