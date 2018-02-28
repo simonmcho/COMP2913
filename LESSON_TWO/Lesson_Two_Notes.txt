@@ -1,0 +1,4 @@
+State - Particular condition that something is in at a specific time
+
+Component Life Cycle 
+- Each component has functions that can called before or after something happens
