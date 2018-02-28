@@ -8,7 +8,7 @@ class ClockLabel extends Component {
     }
 
     componentWillMount() {
-        this.props.color
+        console.log(this.props.color);
     }
 
     componentWillReceiveProps(nextProps) { // can run multiple times

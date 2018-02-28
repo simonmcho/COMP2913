@@ -6,3 +6,7 @@ Component Life Cycle
 Remember that setSTate is the method that runs the render of the component
 
 WillReceiveProps method will receive props upon state change because of setState (using the clock example
+
+Event Handlers
+- camel case, not lower case
+eg. onClick vs onclick
