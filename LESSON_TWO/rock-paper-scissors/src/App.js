@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import Images from './Components/Images';
-import Scoreboard from './Components/Scoreboard';
-import ResetButton from './Components/ResetButton';
+import RockPaperScissorsGame from './Components/RockPaperScissorsGame';
+
 import logo from './logo.svg';
 import './App.css';
 
@@ -16,9 +15,7 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Images />
-        <Scoreboard />
-        <ResetButton />
+        <RockPaperScissorsGame />
       </div>
     );
   }

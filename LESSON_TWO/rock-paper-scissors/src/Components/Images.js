@@ -63,11 +63,11 @@ class Images extends Component {
         }
         
         if(winningChoice[userChoice] == computerChoice) {
-            alert("You chose " + userChoice + " and computer chose " + computerChoice +", so you win!");
+            alert("YOU WIN! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
         } else if(winningChoice[computerChoice] == userChoice) {
-            alert("You chose " + userChoice + " and computer chose " + computerChoice + ", so computer wins!");
+            alert("YOU LOSE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
         } else {
-            alert("You chose " + userChoice + " and computer chose " + computerChoice + ", so it's a tie!");
+            alert("YOU TIE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
         }
 
     }
