@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
-import Profile from './Profile';
-import Header from './Header';
-import logo from './logo.svg';
 
+import Header from './Header';
+import Product from './Product';
+import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+      
   render() {
+      const productName = "FX50";
+      const productPrice = 25.00;
+
     return (
       <div className="App">
         <Header 
@@ -15,9 +19,9 @@ class App extends Component {
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
-        <Profile 
-          fullName="SIMON CHO!!" 
-          imageEvo="http://i2.wp.com/s3mag.com/blog/wp-content/uploads/2016/02/s3-magazine-frs-10.jpg"
+        <Product 
+          productName={productName}
+          productPrice={productPrice}
         />
       </div>
     );
