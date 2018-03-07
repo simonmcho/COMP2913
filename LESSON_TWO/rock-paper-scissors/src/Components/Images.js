@@ -11,7 +11,7 @@ class Images extends Component {
         super(props);
 
         this.state = {
-            images: [
+            imageStates: [
                 {
                     name: 'rock',
                     src: imageRock,
@@ -33,18 +33,40 @@ class Images extends Component {
         this.userSelectedElement = this.userSelectedElement.bind(this);
         this.computerSelection = this.computerSelection.bind(this);
         this.determineWinner = this.determineWinner.bind(this);
+        
     }
 
-    // Function for computer choice...maybe can choose within userSelecetdElement map function 
+    // Function to change border color on selected image
+    userSelectedElement(chosenImage) {
+        
+        const { imageStates } = this.state;
+        
+        const updatedImages = imageStates.map(image => {
+            chosenImage === image ? image.border = '3px green solid' : image.border = '3px black solid';
+            
+            return image;
+        });
+  
+        const computerChoiceImageName = this.computerSelection(this.state.imageStates);
+
+        this.determineWinner(chosenImage.name, computerChoiceImageName);
+
+        // Makes sense this waits for everything else, since we need to update with new values
+        this.setState({
+            imageStates: updatedImages 
+        });       
+        
+    };
+
+    // Computer iterates through imageState, if random number matches index, return name of the image 
     computerSelection(imagesToIterate) {
 
         let chosenName = '';
         const numberOfImages = imagesToIterate.length;
-        const imageChosen = Math.floor(Math.random() * numberOfImages);
+        const numberChosen = Math.floor(Math.random() * numberOfImages);
 
         imagesToIterate.forEach((currentElement, currentIndex) => {
-            if(imageChosen == currentIndex) {
-                //console.log("Computer chose " + currentElement.name);
+            if(numberChosen === currentIndex) {
                 chosenName = currentElement.name; //returning currentElement.name here gets out of forEach loop but not the function?
             }
         });
@@ -55,48 +77,32 @@ class Images extends Component {
 
     // Function to determine winner
     determineWinner(userChoice, computerChoice) {
-    
+        
+
         const winningChoice = {
             rock: 'scissors',
             paper: 'rock',
             scissors: 'paper'
         }
         
-        if(winningChoice[userChoice] == computerChoice) {
-            alert("YOU WIN! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
-        } else if(winningChoice[computerChoice] == userChoice) {
-            alert("YOU LOSE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+        if(winningChoice[userChoice] === computerChoice) {
+            this.props.onClick("user");
+            console.log("YOU WIN! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+        } else if(winningChoice[computerChoice] === userChoice) {
+            this.props.onClick("computer");
+            console.log("YOU LOSE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
         } else {
-            alert("YOU TIE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+            this.props.onClick("both");
+            console.log("YOU TIE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
         }
 
     }
 
-    // Function to change border color on selected image
-    userSelectedElement(chosenImage) {
-        
-        const { images } = this.state;
-        
-        const updatedImages = images.map(image => {
-            chosenImage === image ? image.border = '3px green solid' : image.border = '3px black solid';
-            
-            return image;
-        });
-
-        const computerChoice = this.computerSelection(this.state.images);
-        // console.log(computerChoice);
-
-        this.determineWinner(chosenImage.name, computerChoice);
-
-        this.setState({
-            images: updatedImages
-        });       
-        
-    };
 
     render() {
 
-        const { images } = this.state;
+        // imageStates is the name of the first property of the state object. 
+        const { imageStates } = this.state;
         
         const inlineStyle = { 
             display: 'inline-block',
@@ -107,12 +113,13 @@ class Images extends Component {
         return (
             <div className="game-images">
             {
-                images.map((image, index) => {
+               imageStates.map((element, index) => {// Iterate through the object
+                   
                     const currentImageIndex = `image_${ index }`;
                     
                     return (
-                        <div key={ currentImageIndex } onClick={ () => this.userSelectedElement(image)  } style={ inlineStyle }>
-                            <img name={ image.name } style={ { width: '250px', height: '250px', border: image.border } } src={ image.src } />
+                        <div key={ currentImageIndex } onClick={ () => this.userSelectedElement(element)  } style={ inlineStyle } >
+                            <img name={ element.name } style={ { width: '250px', height: '250px', border: element.border } } src={ element.src } onClick = { this.props.onClick } />
                         </div>
                     );
                 })
