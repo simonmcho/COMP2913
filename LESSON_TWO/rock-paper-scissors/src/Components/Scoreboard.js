@@ -12,16 +12,14 @@ class Scoreboard extends Component {
 
     updateScore() {
 
-        const updatedScore = this.props.score;
-
-        this.state.userScore = updatedScore.user;
-        this.state.computerScore = updatedScore.computer;
-
+        this.setState(
+            this.props.score
+        )
     }
 
     render() {
 
-        this.updateScore();
+        // this.updateScore();
 
         return (
             <div>

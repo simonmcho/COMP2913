@@ -69,22 +69,12 @@ class RockPaperScissorsGame extends Component {
         }, 10);
     }
 
-    reset() {
-
-        const newGame = {
-            user: 0,
-            computer: 0
-        }
-
-        this.tester(newGame);
-
-    }
-
-    tester = (test) => {
-
+    reset(newGame) {
+        console.log("RESETTING")
         this.setState({
-            scores: test
-        });
+            scores: newGame
+        })
+
     }
 
     componentWillMount() {
@@ -96,7 +86,7 @@ class RockPaperScissorsGame extends Component {
             <div className="game-rock-paper-scissors">
                 <Images onClick={this.scorekeeper}/>
                 <Scoreboard score={this.state.scores}/>
-                <ResetButton onClick={this.reset}/>
+                <ResetButton />
             </div>
         )
     }
