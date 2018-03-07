@@ -5,17 +5,28 @@ class Scoreboard extends Component {
         super(props)
 
         this.state = {
-            playerScore: 0,
+            userScore: 0,
             computerScore: 0
         }
     }
 
+    updateScore() {
+
+        const updatedScore = this.props.score;
+
+        this.state.userScore = updatedScore.user;
+        this.state.computerScore = updatedScore.computer;
+
+    }
+
     render() {
-        
+
+        this.updateScore();
+
         return (
             <div>
                 <div>
-                    <span>Player Score: <p style={{ display: "inline-block" }}>{this.state.playerScore}</p></span>
+                    <span>Player Score: <p style={{ display: "inline-block" }}>{this.state.userScore}</p></span>
                 </div>
                 <div>
                     <span>Computer Score: <p style={{ display: "inline-block" }}>{this.state.computerScore}</p></span>

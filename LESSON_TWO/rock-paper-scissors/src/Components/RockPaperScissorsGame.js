@@ -8,7 +8,6 @@ class RockPaperScissorsGame extends Component {
         super(props);
 
         this.state = {
-            theData: null,
             scores: {
                 user: 0,
                 computer: 0
@@ -16,6 +15,7 @@ class RockPaperScissorsGame extends Component {
         }
     }
 
+    // Keeps score. Data passed up from child Images component
     scorekeeper = (whoScored) => {
         
         const { scores } = this.state;
@@ -54,25 +54,49 @@ class RockPaperScissorsGame extends Component {
             computer: 0
         }
 
-        if(scores.user == 5) {
-            alert("YOU WON THE GAME!");
-            this.setState({ // This does not call render either?
-                scores: newGame
-            });
-        } else if (scores.computer == 5) {
-            alert("Computer wins the game...");
-            this.setState({
-                scores: newGame
-            });
+        setTimeout( () => {
+            if(scores.user == 5) {
+                alert("YOU WON THE GAME!");
+                this.setState({ // This does not call render either?
+                    scores: newGame
+                });
+            } else if (scores.computer == 5) {
+                alert("Computer wins the game...");
+                this.setState({
+                    scores: newGame
+                });
+            }
+        }, 10);
+    }
+
+    reset() {
+
+        const newGame = {
+            user: 0,
+            computer: 0
         }
+
+        this.tester(newGame);
+
+    }
+
+    tester = (test) => {
+
+        this.setState({
+            scores: test
+        });
+    }
+
+    componentWillMount() {
+        console.log("mounting")
     }
 
     render() {
         return (
             <div className="game-rock-paper-scissors">
                 <Images onClick={this.scorekeeper}/>
-                <Scoreboard />
-                <ResetButton />
+                <Scoreboard score={this.state.scores}/>
+                <ResetButton onClick={this.reset}/>
             </div>
         )
     }
