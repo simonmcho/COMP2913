@@ -7,12 +7,14 @@ class RockPaperScissorsGame extends Component {
     constructor(props) {
         super(props);
 
+        const startStatus = "Play Game!";
+
         this.state = {
             scores: {
                 user: 0,
                 computer: 0
             },
-            status: "Play game!"
+            status: startStatus
         }
 
         this.newGame = {
@@ -21,11 +23,11 @@ class RockPaperScissorsGame extends Component {
         }
 
         this.resetGame = this.resetGame.bind(this);
-
+        this.updateStatus = this.updateStatus.bind(this);
     }
 
     // Keeps score. Data passed up from child Images component
-    scorekeeper = (whoScored) => {
+    scorekeeper = (whoScored) => { //why i dont have to bind this to this function?
         
         const { scores } = this.state;
 
@@ -59,17 +61,18 @@ class RockPaperScissorsGame extends Component {
         const { scores } = this.state;
 
         setTimeout( () => {
-            if(scores.user == 5) {
-                alert("YOU WON THE GAME!");
+            if(scores.user === 5) {
                 this.setState({ // This does not call render either?
-                    scores: this.newGame
+                    scores: this.newGame,
+                    status: "YOU WON THE GAME!"
                 });
-            } else if (scores.computer == 5) {
-                alert("Computer wins the game...");
+            } else if (scores.computer === 5) {
+                
                 this.setState({
-                    scores: this.newGame
+                    scores: this.newGame,
+                    status: "YOU WON THE GAME!"
                 });
-            }
+            } 
         }, 10);
     }
 
@@ -83,11 +86,18 @@ class RockPaperScissorsGame extends Component {
 
     }
 
-    render() {
+    updateStatus(newStatus) {
+        console.log(newStatus)
+        this.setState({
+            status: newStatus
+        })
+    }
 
+    render() {
+        console.log("RENDERING")
         return (
             <div className="game-rock-paper-scissors">
-                <Images onClick={this.scorekeeper}/>
+                <Images onClick={this.scorekeeper} updateGameStatus={this.updateStatus}/>
                 <Scoreboard score={this.state.scores} />
                 <div>
                     <h4>

@@ -85,15 +85,20 @@ class Images extends Component {
             scissors: 'paper'
         }
         
+        let theStatus = '';
+
         if(winningChoice[userChoice] === computerChoice) {
+            theStatus = "YOU WIN! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase();
             this.props.onClick("user");
-            console.log("YOU WIN! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+            this.props.updateGameStatus(theStatus);
         } else if(winningChoice[computerChoice] === userChoice) {
+            theStatus = "YOU LOSE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase();
             this.props.onClick("computer");
-            console.log("YOU LOSE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+            this.props.updateGameStatus(theStatus);
         } else {
+            theStatus = "YOU TIE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase();
             this.props.onClick("both");
-            console.log("YOU TIE! You: " + userChoice.toUpperCase() + " VS. Computer: " + computerChoice.toUpperCase());
+            this.props.updateGameStatus(theStatus);
         }
 
     }
