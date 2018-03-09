@@ -11,8 +11,17 @@ class RockPaperScissorsGame extends Component {
             scores: {
                 user: 0,
                 computer: 0
-            }
+            },
+            status: "Play game!"
         }
+
+        this.newGame = {
+            user: 0,
+            computer: 0
+        }
+
+        this.resetGame = this.resetGame.bind(this);
+
     }
 
     // Keeps score. Data passed up from child Images component
@@ -49,44 +58,43 @@ class RockPaperScissorsGame extends Component {
 
         const { scores } = this.state;
 
-        const newGame = {
-            user: 0,
-            computer: 0
-        }
-
         setTimeout( () => {
             if(scores.user == 5) {
                 alert("YOU WON THE GAME!");
                 this.setState({ // This does not call render either?
-                    scores: newGame
+                    scores: this.newGame
                 });
             } else if (scores.computer == 5) {
                 alert("Computer wins the game...");
                 this.setState({
-                    scores: newGame
+                    scores: this.newGame
                 });
             }
         }, 10);
     }
 
-    reset(newGame) {
-        console.log("RESETTING")
+    resetGame() {
         this.setState({
-            scores: newGame
+            scores: {
+                user: 0,
+                computer: 0
+            }
         })
 
     }
 
-    componentWillMount() {
-        console.log("mounting")
-    }
-
     render() {
+
         return (
             <div className="game-rock-paper-scissors">
                 <Images onClick={this.scorekeeper}/>
-                <Scoreboard score={this.state.scores}/>
-                <ResetButton />
+                <Scoreboard score={this.state.scores} />
+                <div>
+                    <h4>
+                        {this.state.status}
+                    </h4>
+                </div>
+                <ResetButton reset={this.resetGame} />
             </div>
         )
     }
