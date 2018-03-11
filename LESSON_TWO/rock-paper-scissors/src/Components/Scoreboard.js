@@ -5,17 +5,30 @@ class Scoreboard extends Component {
         super(props)
 
         this.state = {
-            playerScore: 0,
-            computerScore: 0
+            userScore: this.props.score.user,
+            computerScore: this.props.score.computer
+        }
+    }
+
+    
+    componentDidUpdate() {
+
+        if(this.state.userScore !== this.props.score.user || this.state.computerScore !== this.props.score.computer) {
+            
+            this.setState({
+                userScore: this.props.score.user,
+                computerScore: this.props.score.computer
+            })
+
         }
     }
 
     render() {
-        
+
         return (
             <div>
                 <div>
-                    <span>Player Score: <p style={{ display: "inline-block" }}>{this.state.playerScore}</p></span>
+                    <span>Player Score: <p style={{ display: "inline-block" }}>{this.state.userScore}</p></span>
                 </div>
                 <div>
                     <span>Computer Score: <p style={{ display: "inline-block" }}>{this.state.computerScore}</p></span>
