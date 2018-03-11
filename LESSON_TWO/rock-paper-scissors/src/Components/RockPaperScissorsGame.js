@@ -7,16 +7,27 @@ class RockPaperScissorsGame extends Component {
     constructor(props) {
         super(props);
 
+        const startStatus = "Play Game!";
+
         this.state = {
             scores: {
                 user: 0,
                 computer: 0
-            }
+            },
+            status: startStatus
         }
+
+        this.newGame = {
+            user: 0,
+            computer: 0
+        }
+
+        this.resetGame = this.resetGame.bind(this);
+        this.updateStatus = this.updateStatus.bind(this);
     }
 
     // Keeps score. Data passed up from child Images component
-    scorekeeper = (whoScored) => {
+    scorekeeper = (whoScored) => { //why i dont have to bind this to this function?
         
         const { scores } = this.state;
 
@@ -49,44 +60,51 @@ class RockPaperScissorsGame extends Component {
 
         const { scores } = this.state;
 
-        const newGame = {
-            user: 0,
-            computer: 0
-        }
-
         setTimeout( () => {
-            if(scores.user == 5) {
-                alert("YOU WON THE GAME!");
+            if(scores.user === 5) {
                 this.setState({ // This does not call render either?
-                    scores: newGame
+                    scores: this.newGame,
+                    status: "YOU WON THE GAME!"
                 });
-            } else if (scores.computer == 5) {
-                alert("Computer wins the game...");
+            } else if (scores.computer === 5) {
+                
                 this.setState({
-                    scores: newGame
+                    scores: this.newGame,
+                    status: "YOU WON THE GAME!"
                 });
-            }
+            } 
         }, 10);
     }
 
-    reset(newGame) {
-        console.log("RESETTING")
+    resetGame() {
         this.setState({
-            scores: newGame
+            scores: {
+                user: 0,
+                computer: 0
+            }
         })
 
     }
 
-    componentWillMount() {
-        console.log("mounting")
+    updateStatus(newStatus) {
+        console.log(newStatus)
+        this.setState({
+            status: newStatus
+        })
     }
 
     render() {
+        console.log("RENDERING")
         return (
             <div className="game-rock-paper-scissors">
-                <Images onClick={this.scorekeeper}/>
-                <Scoreboard score={this.state.scores}/>
-                <ResetButton />
+                <Images onClick={this.scorekeeper} updateGameStatus={this.updateStatus}/>
+                <Scoreboard score={this.state.scores} />
+                <div>
+                    <h4>
+                        {this.state.status}
+                    </h4>
+                </div>
+                <ResetButton reset={this.resetGame} />
             </div>
         )
     }

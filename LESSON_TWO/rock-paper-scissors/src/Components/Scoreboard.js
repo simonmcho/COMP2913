@@ -5,21 +5,25 @@ class Scoreboard extends Component {
         super(props)
 
         this.state = {
-            userScore: 0,
-            computerScore: 0
+            userScore: this.props.score.user,
+            computerScore: this.props.score.computer
         }
     }
 
-    updateScore() {
+    
+    componentDidUpdate() {
 
-        this.setState(
-            this.props.score
-        )
+        if(this.state.userScore !== this.props.score.user || this.state.computerScore !== this.props.score.computer) {
+            
+            this.setState({
+                userScore: this.props.score.user,
+                computerScore: this.props.score.computer
+            })
+
+        }
     }
 
     render() {
-
-        // this.updateScore();
 
         return (
             <div>
