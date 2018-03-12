@@ -4,60 +4,94 @@ class StopWatch extends Component {
     constructor(props) {
         super(props);
 
-        // function timer(){
-        //     var sec = 30;
-        //     var timer = setInterval(function(){
-        //         document.getElementById('safeTimerDisplay').innerHTML='00:'+sec;
-        //         sec--;
-        //         if (sec < 0) {
-        //             clearInterval(timer);
-        //         }
-        //     }, 1000);
-        // }
+        const stopText = "STOP";
+        const startText = "START";
+        const startTime = 0;
 
-        let time = 0;
+        this.theTimer;
 
         this.state = {
-            currentTime : time
-        }
+            timerText: stopText,
+            resetText: "RESET",
+            timerStatus: startTime
+        };
+
+        this.startTimer = this.startTimer.bind(this);
+        this.manageTimer = this.manageTimer.bind(this);
+        this.resetTimer = this.resetTimer.bind(this);
     }
 
-    // timer() {
-
-    //     let sec = 0;
+    // Manage timer to start and stop
+    manageTimer() {
         
-    //     const timer = setInterval( () => {
+        // Variables
+        const currentState  = this.state;
 
+        const currentTimeStatus = currentState.timerStatus;
+        const currentTimerText = currentState.timerText;
+        let updatedTimerText = '';
+        // console.log(updatedTimerText);
 
+        // Condition to start and stop timer
+        if(currentTimerText === "START") {
+            this.theTimer = setInterval(this.startTimer, 1000);
+            updatedTimerText = "STOP";
+        } else {
+            clearInterval(this.theTimer);
+            updatedTimerText = "START";
+        }
 
-    //     });
+        this.setState({
+            timerText: updatedTimerText,
+            timerStatus: currentTimeStatus
+        });
 
-    // }
+    }
+
+    // Function declaration to run timer
+    startTimer() {
+        let currentTime = this.state.timerStatus;
+
+        currentTime++;
+
+        this.setState({
+            timerStatus: currentTime
+        });
+    }
+
+    // Function declaration to reset timer
+    resetTimer() {
+        clearInterval(this.theTimer);
+
+        this.setState({
+            timerText: "START"
+        });
+    }
 
     componentWillMount() {
-
-        let  { currentTime } = this.state;
-
-        setInterval( () => { 
-            currentTime++;
-
-            this.setState({
-                currentTime : currentTime
-            });
-        }, 1000);
+        // Start timer first time? Not sure if this is best
+        this.theTimer = setInterval(this.startTimer, 1000);
     }
 
     render() {
-        console.log(this.state.currentTime)
+        
         return (
             <div>
-                <p>
-                    { this.state.currentTime }
-                </p>
+                <div>
+                    {this.state.timerStatus}
+                </div>
+                <span>
+                    <button onClick={this.manageTimer}>
+                        {this.state.timerText}
+                    </button>
+                </span>
+                <span>
+                    <button onClick={this.resetTimer}>{this.state.resetText}</button>
+                </span>
             </div>
         )
 
-    }
+    };
 
 
 }
