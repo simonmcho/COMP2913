@@ -6,9 +6,9 @@ You can find the most recent version of this guide [here](https://github.com/fac
 ## This is Project One for BCIT COMP 2913 React and Modern JavaScript Class
 
 ### Prerequisites
-• Basic JavaScript (ES6)
-• Basic knoweldge of ReactJS (lifecycle components, props, states)
+• Basic JavaScript (ES6)    
+• Basic knoweldge of ReactJS (lifecycle components, props, states)     
 
 ### How to get started
-• Install dependencies with `npm install` or `yarn install`
-• Run the app on your local server with `npm start` or `yarn start`
+• Install dependencies with `npm install` or `yarn install`     
+• Run the app on your local server with `npm start` or `yarn start`     
