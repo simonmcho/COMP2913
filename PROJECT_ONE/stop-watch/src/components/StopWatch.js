@@ -13,12 +13,14 @@ class StopWatch extends Component {
         this.state = {
             timerText: stopText,
             resetText: "RESET",
-            timerStatus: startTime
+            timerStatus: startTime,
+            timeFormatted: "00:00:00"
         };
 
         this.startTimer = this.startTimer.bind(this);
         this.manageTimer = this.manageTimer.bind(this);
         this.resetTimer = this.resetTimer.bind(this);
+        
     }
 
     // Manage timer to start and stop
@@ -30,7 +32,6 @@ class StopWatch extends Component {
         const currentTimeStatus = currentState.timerStatus;
         const currentTimerText = currentState.timerText;
         let updatedTimerText = '';
-        // console.log(updatedTimerText);
 
         // Condition to start and stop timer
         if(currentTimerText === "START") {
@@ -50,13 +51,22 @@ class StopWatch extends Component {
 
     // Function declaration to run timer
     startTimer() {
+    
         let currentTime = this.state.timerStatus;
+        currentTime++; //Increment before calculating
 
-        currentTime++;
+        // Assign variables to display timer format properly
+        const seconds = currentTime % 60 > 9 ? `${currentTime % 60}` : `0${currentTime % 60}`;
+        const minutes = Math.floor(currentTime % 3600 / 60) > 9 ? `${Math.floor(currentTime % 3600  / 60)}` : `0${Math.floor(currentTime % 3600  / 60)}`;
+        const hours = Math.floor(currentTime / (60 * 60)) > 9 ? `${Math.floor(currentTime / (60 * 60))}` : `0${Math.floor(currentTime / (60 * 60))}`;
+
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
 
         this.setState({
-            timerStatus: currentTime
+            timerStatus: currentTime,
+            timeFormatted: formattedTime
         });
+
     }
 
     // Function declaration to reset timer
@@ -64,7 +74,9 @@ class StopWatch extends Component {
         clearInterval(this.theTimer);
 
         this.setState({
-            timerText: "START"
+            timerText: "START",
+            timerStatus: 0,
+            timeFormatted: "00:00:00"
         });
     }
 
@@ -78,7 +90,7 @@ class StopWatch extends Component {
         return (
             <div>
                 <div>
-                    {this.state.timerStatus}
+                    {this.state.timeFormatted}
                 </div>
                 <span>
                     <button onClick={this.manageTimer}>
