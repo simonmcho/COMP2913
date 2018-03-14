@@ -3,6 +3,23 @@ import Images from './Images';
 import Scoreboard from './Scoreboard';
 import ResetButton from './ResetButton';
 
+// What the prof did was:
+// setState is async, so we dont know before hand that it'll reach 5
+// so we set a variable const newPlayerScore = this.state.playerScore + 1;
+// if newPlayerScore === 5, alert winner, if not, set state
+// OR
+// callback funciton within setState:
+/*
+this.setState( { computerScore: newScore }, () => {
+
+    if(computerScore >= 5) {
+        return alert("COMPUTER WON!");
+    }
+
+});
+
+*/
+
 class RockPaperScissorsGame extends Component {
     constructor(props) {
         super(props);
@@ -24,10 +41,11 @@ class RockPaperScissorsGame extends Component {
 
         this.resetGame = this.resetGame.bind(this);
         this.updateStatus = this.updateStatus.bind(this);
+        this.scorekeeper = this.scorekeeper.bind(this);
     }
 
     // Keeps score. Data passed up from child Images component
-    scorekeeper = (whoScored) => { //why i dont have to bind this to this function?
+    scorekeeper(whoScored) { //why i dont have to bind this to this function?
         
         const { scores } = this.state;
 
@@ -73,7 +91,7 @@ class RockPaperScissorsGame extends Component {
                     status: "YOU WON THE GAME!"
                 });
             } 
-        }, 10);
+        }, 100);
     }
 
     resetGame() {
