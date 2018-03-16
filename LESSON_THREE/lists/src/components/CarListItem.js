@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class CarListItem extends Component {
+class CarListItem extends Component {w
 
     render() {
          return (
