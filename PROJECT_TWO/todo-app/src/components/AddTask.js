@@ -12,13 +12,20 @@ class AddTask extends Component {
     }
 
     getTask() {
-        this.props.addTask(this.state.taskHeader);
+        this.state.taskHeader !== '' && this.props.addTask(this.state.taskHeader);
     }
 
     getUserInputForTaskHeader(event) {
+        // event.target.value !== ''  // this condition doesnt prevent it from adding to state?
+        // && 
         this.setState({
             taskHeader: event.target.value
         });
+        
+    }
+
+    componentDidUpdate() {
+        console.log(this.state.taskHeader);
     }
 
     render() {
