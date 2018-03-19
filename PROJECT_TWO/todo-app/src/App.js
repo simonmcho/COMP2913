@@ -53,6 +53,7 @@ class App extends Component {
     
     const { taskHeader } = this.state;
 
+    // Return any items that do not match the selected task
     const updatedTasks = taskHeader.filter( task => {
 
       return task.key !== taskToRemove ? task : null
