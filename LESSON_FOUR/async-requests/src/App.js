@@ -9,29 +9,70 @@ class App extends Component {
 
     this.state = {
       countries: [],
-      showSpinner: false
+      showSpinner: false,
+      searchResults: "Search here",
+      showFrench: false
     }
 
     this.getAmericas = this.getAmericas.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.searchForCountry = this.searchForCountry.bind(this);
   }
-
+  
   getAmericas() {
+    this.setState({
+      showSpinner: true
+    })
     axios.get('https://restcountries.eu/rest/v2/name/america')
-      .then((res)=> {
-        this.setState({
-          countries: res.data,
-          showSpinner: true
-        });
+    .then((res)=> {
+      this.setState({
+        countries: res.data,
+        showSpinner: false
       });
+    });
   }
 
-  componentWillMount() {
-    axios.get('https://restcountries.eu/rest/v2/all')
-      .then( (res, req)=> {
-        //console.log(res);
+  searchForCountry() {
+
+    this.setState({
+      showSpinner: true
+    });
+
+    const queryValue = this.state.searchResults;
+    const apiToUse = `https://restcountries.eu/rest/v2/name/${queryValue}`
+    
+    console.log(queryValue)
+    axios.get(apiToUse)
+      .then((res) => {
+        console.log("RESONLVED")
         this.setState({
           countries: res.data,
           showSpinner: false
+        })
+      })
+      .catch((error) => {
+          this.setState({
+            showSpinner: false
+          })
+      })
+  }
+  
+  handleChange(event) {
+
+    const newValue = event.target.type === "checkbox" ? event.target.checked : event.target.value;
+
+    this.setState({
+      [event.target.name]: newValue
+    });
+  }
+  
+  componentWillMount() {
+    console.log("COMPONENAT MOUNTING")
+    axios.get('https://restcountries.eu/rest/v2/all')
+      .then( (res, req)=> {
+        console.log(res.data);
+        this.setState({
+          countries: res.data
         })
       });
   }
@@ -39,8 +80,7 @@ class App extends Component {
   render() {
     
     const { countries, showSpinner } = this.state;
-    console.log(showSpinner);
-
+    
     return (
       <div className="App">
         <header className="App-header">
@@ -53,14 +93,19 @@ class App extends Component {
         {
           showSpinner && <p>THIS IS A SPINNER</p>
         }
-        <div>
-          <button onClick={this.getAmericas}>Search for Americas</button>
-        </div>
+        <input name="searchResults" value={this.state.searchResults} onChange={this.handleChange} />
+        <button type="button" onClick={this.searchForCountry}>Search!</button>
+        <input name="showFrench" type="checkbox" checked={this.state.showFrench} onChange={this.handleChange}/>
         {
           countries.map( (country)=> {
+
+            
+
             return (
               <li key={country.alpha2Code + `-` + country.numericCode} id={country.alpha2Code + `-` + country.numericCode}>
-                {country.name}
+                {
+                  this.state.showFrench ? country.translations.fr : country.name
+                }
               </li>
             )
           })
