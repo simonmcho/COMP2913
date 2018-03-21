@@ -17,6 +17,7 @@ class App extends Component {
     this.getAmericas = this.getAmericas.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchForCountry = this.searchForCountry.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
   
   getAmericas() {
@@ -39,9 +40,9 @@ class App extends Component {
     });
 
     const queryValue = this.state.searchResults;
-    const apiToUse = `https://restcountries.eu/rest/v2/name/${queryValue}`
+    // For handling empty searches
+    const apiToUse = queryValue === '' ?  `https://restcountries.eu/rest/v2/all` : `https://restcountries.eu/rest/v2/name/${queryValue}`;
     
-    console.log(queryValue)
     axios.get(apiToUse)
       .then((res) => {
         console.log("RESONLVED")
@@ -64,6 +65,12 @@ class App extends Component {
     this.setState({
       [event.target.name]: newValue
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    this.handleChange(event);
   }
   
   componentWillMount() {
@@ -93,8 +100,10 @@ class App extends Component {
         {
           showSpinner && <p>THIS IS A SPINNER</p>
         }
-        <input name="searchResults" value={this.state.searchResults} onChange={this.handleChange} />
-        <button type="button" onClick={this.searchForCountry}>Search!</button>
+        <form onSubmit={this.handleSubmit}>
+          <input name="searchResults" value={this.state.searchResults} onChange={this.handleChange} />
+          <button type="submit" onClick={this.searchForCountry}>Search!</button>
+        </form>
         <input name="showFrench" type="checkbox" checked={this.state.showFrench} onChange={this.handleChange}/>
         {
           countries.map( (country)=> {
