@@ -18,13 +18,14 @@ class App extends Component {
 
   handleChange(event) {
     const newValue = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-
+    console.log(newValue);
     this.setState({
       [event.target.name]: newValue
     })
   }
 
   render() {
+    console.log("RENDERED!")
     return (
       <div className="App">
         <header className="App-header">
