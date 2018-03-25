@@ -59,9 +59,9 @@ class App extends Component {
   }
   
   handleChange(event) {
-
+ 
     const newValue = event.target.type === "checkbox" ? event.target.checked : event.target.value;
-
+    
     this.setState({
       [event.target.name]: newValue
     });
@@ -69,7 +69,7 @@ class App extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-
+    
     this.handleChange(event);
   }
   
