@@ -5,35 +5,61 @@ class AddTask extends Component {
         super(props);
     
         this.state = {
-            taskHeader: ''
+            taskHeader: {}
         }
 
-        this.getTask = this.getTask.bind(this);
+        this.updateTask = this.updateTask.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    getTask() {
-        this.state.taskHeader !== '' && this.props.addTask(this.state.taskHeader);
-    }
+    // Get value from the target input and update this state with an object,
+    // Object contains target value and random number for key
+    updateTask(e) {
+        const taskValue = e.target.value;
+        const keyForTask = Math.round(Math.random() * Math.floor(999999));
 
-    getUserInputForTaskHeader(event) {
-        // event.target.value !== ''  // this condition doesnt prevent it from adding to state?
-        // && 
+        const updatedTask = { 
+            keyForTask: taskValue
+        }
+
         this.setState({
-            taskHeader: event.target.value
+            [e.target.name]: updatedTask
         });
-        
+
     }
 
-    componentDidUpdate() {
-        console.log(this.state.taskHeader);
+    // If the object is not empty, pass the task value up to parent using the CB function
+    handleClick() {
+        const { taskHeader } = this.state;
+        
+        (Object.keys(taskHeader).length !== 0 && taskHeader.constructor === Object) && this.props.addTaskToList(taskHeader);
+
+        this.setState({
+            taskHeader: {}
+        })
+    }
+
+    // Handle form submission by calling handleClick()
+    handleSubmit(e) {
+        e.preventDefault();
+        
+        this.handleClick();
     }
 
     render() {
+
+        const inputValue = this.state.taskHeader.keyForTask == null ? '' : this.state.taskHeader.keyForTask;
+
         return (
             <div>
-                <span>Type in a task: </span>
-                <input type="text" value={this.state.taskHeader} onChange={ newTaskHeader => this.getUserInputForTaskHeader(newTaskHeader) }/>
-                <button type="button" onClick={ this.getTask }>Add Task</button>
+                <div style={{ marginTop: " 20px", marginBottom: "10px" }}>
+                    <span >Type in a task: </span>
+                </div>
+                <form onSubmit={this.handleSubmit}>
+                    <input type="text" name='taskHeader' value={inputValue} onChange={this.updateTask}/>
+                    <button type="button" onClick={ this.handleClick }>Add Task</button>
+                </form>
             </div>
         )
     }
