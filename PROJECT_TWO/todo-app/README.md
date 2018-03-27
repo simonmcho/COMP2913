@@ -7,6 +7,10 @@ This app will display a text input for the user, where they will be able to writ
 • Knowledge of JSX, REACT Props, REACT States    
 
 * Special note - `npm run eject` was ran to customize the webpack config setup to add a SASS/SCSS precompiler. To read more about this, refer to [Convert to a custom setup](https://github.com/facebook/create-react-app#converting-to-a-custom-setup).    
+
+## How to get started
+• Install dependencies by running `npm install`. I recommend `yarn install` for a faster installation
+• Run the app with `yarn start`. The `npm` command can work too
     
 ### User stories
 [x] A button should be displayed beside the input. When clicked, this button should add the user’s input to a list of to do items.   
