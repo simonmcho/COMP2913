@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/sass/TaskList.scss';
 
 class TaskList extends Component {
     constructor(props) {
@@ -19,11 +20,11 @@ class TaskList extends Component {
         const tasks = this.props.theList;
         
         return (
-            <div style={{ marginTop: "25px"}}>
-                <div style={{ borderBottom: "1px solid black", width: "25%", margin: "0 auto", marginBottom: '15px'}}>
+            <div className="task-list">
+                <div className="task-list-header">
                     <h4>To Do List:</h4>
                 </div>
-                <ul style={{ padding: '0', width: '15%', margin: '0 auto', listStyle: 'none' }}>
+                <ul className="task-list-items">
                 {
                     tasks.map( (task, index) => {
 
@@ -32,20 +33,13 @@ class TaskList extends Component {
 
                         const taskFormatted = 
 
-                            <li key={theKey} style={{ margin: '0 auto', marginTop: '5px' }}>
+                            <li key={theKey}>
                                 <input 
                                     value={taskheader} 
                                     type="checkbox" 
-                                    onClick={this.removeTask} 
-                                    style={{ width: "10px", verticalAlign: "middle" }} 
+                                    onClick={this.removeTask}  
                                 />
-                                <label style={{ 
-                                                width: '50%', 
-                                                position: 'relative', 
-                                                display: 'inline-block', 
-                                                verticalAlign: 'top', 
-                                                textAlign: 'center'
-                                              }}>
+                                <label>
                                     {taskheader}
                                 </label>
                             </li>;

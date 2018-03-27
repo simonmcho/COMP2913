@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import AddTask from './components/AddTask';
 import TaskList from './components/TaskList';
-import './App.css';
-
+import './styles/css/App.css';
 
 class App extends Component {
   constructor(props) {

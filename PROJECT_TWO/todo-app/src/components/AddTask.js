@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/sass/AddTask.scss';
 
 class AddTask extends Component {
     constructor(props) {
@@ -53,8 +54,8 @@ class AddTask extends Component {
         const inputValue = this.state.taskHeader[theKey] == null ? '' : this.state.taskHeader[theKey];
 
         return (
-            <div>
-                <div style={{ marginTop: " 20px", marginBottom: "10px" }}>
+            <div className="add-task-container">
+                <div className="add-task-header">
                     <span >Type in a task: </span>
                 </div>
                 <form onSubmit={this.handleSubmit}>
