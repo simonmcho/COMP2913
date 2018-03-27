@@ -19,9 +19,9 @@ class AddTask extends Component {
         const taskValue = e.target.value;
         const keyForTask = Math.round(Math.random() * Math.floor(999999));
 
-        const updatedTask = { 
-            keyForTask: taskValue
-        }
+        const updatedTask = {};
+        
+        updatedTask[keyForTask] = taskValue; 
 
         this.setState({
             [e.target.name]: updatedTask
@@ -32,7 +32,7 @@ class AddTask extends Component {
     // If the object is not empty, pass the task value up to parent using the CB function
     handleClick() {
         const { taskHeader } = this.state;
-        
+        //console.log(taskHeader);
         (Object.keys(taskHeader).length !== 0 && taskHeader.constructor === Object) && this.props.addTaskToList(taskHeader);
 
         this.setState({
@@ -49,7 +49,8 @@ class AddTask extends Component {
 
     render() {
 
-        const inputValue = this.state.taskHeader.keyForTask == null ? '' : this.state.taskHeader.keyForTask;
+        const theKey = Object.keys(this.state.taskHeader) 
+        const inputValue = this.state.taskHeader[theKey] == null ? '' : this.state.taskHeader[theKey];
 
         return (
             <div>

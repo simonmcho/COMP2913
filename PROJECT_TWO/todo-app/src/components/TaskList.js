@@ -17,7 +17,7 @@ class TaskList extends Component {
     render() {
 
         const tasks = this.props.theList;
-        console.log(tasks)
+        
         return (
             <div style={{ marginTop: "25px"}}>
                 <div style={{ borderBottom: "1px solid black", width: "25%", margin: "0 auto", marginBottom: '15px'}}>
@@ -27,8 +27,8 @@ class TaskList extends Component {
                 {
                     tasks.map( (task, index) => {
 
-                        const taskheader = task.keyForTask;
                         const theKey = Object.keys(task);
+                        const taskheader = task[theKey];
 
                         const taskFormatted = 
 

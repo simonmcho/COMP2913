@@ -32,22 +32,29 @@ class App extends Component {
   // Receive task value to remove and update state with new list of tasks
   removeOneTask(taskHeader) {
     const { tasks } = this.state;
+  
+    const updatedTaskList = tasks.filter( task => {
+      
+      const theKey = Object.keys(task); // Get key value to remove corresponding value
+  
+      return task[theKey] !== taskHeader // Easier to read rather than single line syntax
+    
+    });
 
-    const updatedTaskList = tasks.filter(task => task !== taskHeader );
-   
+    // Allow a bit of time before removing for user - can maybe add a "Removing" spinner, but annoying
     setTimeout( ()=> {
       
       this.setState({
         tasks: updatedTaskList
       });
 
-    }, 150);
+    }, 200);
 
   }
 
   render() {
     const { tasks } = this.state;
-
+    
     return (
       <div className="App">
         <AddTask addTaskToList={this.addOneTask} />
