@@ -1,0 +1,32 @@
+.task-list {
+    margin-top: 25px;
+    .task-list-header {
+        border-bottom: 1px solid #000;
+        margin-bottom: 15px;
+        width: 25%;
+        margin: 0 auto;
+    }
+    ul {
+        &.task-list-items {
+            padding: 0;
+            width: 15%;
+            margin: 0 auto;
+            list-style: none;
+            li {
+                margin: 0 auto;
+                margin-top: 5px;
+                input {
+                    width: 10px;
+                    vertical-align: middle;
+                }
+                label {
+                    width: 50%;
+                    position: relative;
+                    display: inline-block;
+                    vertical-align: top;
+                    text-align: center;
+                }
+            }
+        }
+    }
+}

@@ -1,92 +1,63 @@
 import React, { Component } from 'react';
-import './App.css';
 import AddTask from './components/AddTask';
+import TaskList from './components/TaskList';
+import './styles/css/App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
   
     this.state = {
-      taskHeader: []
+      tasks: []
     }
 
-    this.addTaskToList = this.addTaskToList.bind(this);
-    this.removeTask = this.removeTask.bind(this);
+    this.addOneTask = this.addOneTask.bind(this);
+    this.removeOneTask = this.removeOneTask.bind(this);
   }
 
-  // Add a task to To Do List
-  addTaskToList (newTask) {
-    const { taskHeader } =  this.state;
-    const lengthOfTasks = taskHeader.length;
+  // Receive task value from AddTask and update state with new list of tasks
+  addOneTask(taskHeader) {
+    const { tasks } = this.state;
 
-    taskHeader.push(
-      <li key={newTask + "-" + lengthOfTasks} style={{ position: 'relative', marginTop: '5px' }}>
-        <input type="checkbox" 
-               id={newTask + "-" + lengthOfTasks} 
-               onClick={ 
-                () => { 
-                  this.removeTask(newTask + "-" + lengthOfTasks) 
-                }
-                } 
-                style={{
-                  width: "10px",
-                  verticalAlign: "middle"
-                }}
-        />
-        <label 
-          key={newTask + "-" + lengthOfTasks} 
-          htmlFor={newTask + "-" + lengthOfTasks}
-          style={{ width: '50%', position: 'relative', display: 'inline-block', verticalAlign: 'top', textAlign: 'left', marginLeft: '5px'}}
-        >
-          {newTask}
-        </label>
-      </li>
-    )
+    let updatedTaskList = tasks;
 
+    updatedTaskList.push(taskHeader);
+    
     this.setState({
-      taskHeader: taskHeader
+      tasks: updatedTaskList
     });
   }
 
-  // Remove a task from the To Do List
-  removeTask(taskToRemove) {
+  // Receive task value to remove and update state with new list of tasks
+  removeOneTask(taskHeader) {
+    const { tasks } = this.state;
+  
+    const updatedTaskList = tasks.filter( task => {
+      
+      const theKey = Object.keys(task); // Get key value to remove corresponding value
+  
+      return task[theKey] !== taskHeader // Easier to read rather than single line syntax
     
-    const { taskHeader } = this.state;
-
-    // Return any items that do not match the selected task
-    const updatedTasks = taskHeader.filter( task => {
-
-      return task.key !== taskToRemove ? task : null
-
     });
-    
-    this.setState({
-      taskHeader: updatedTasks
-    })
+
+    // Allow a bit of time before removing for user - can maybe add a "Removing" spinner, but annoying
+    setTimeout( ()=> {
+      
+      this.setState({
+        tasks: updatedTaskList
+      });
+
+    }, 200);
 
   }
 
   render() {
+    const { tasks } = this.state;
     
-    const { taskHeader } = this.state;
-
     return (
       <div className="App">
-        <AddTask addTask={this.addTaskToList}/>
-        <div style={{ marginTop: "25px"}}>
-          <div style={{ borderBottom: "1px solid black", width: "25%", margin: "0 auto", marginBottom: '15px'}}>
-            <h4>To Do List:</h4>
-          </div>
-          <ul style={{ padding: '0', width: '15%', margin: '0 auto', listStyle: 'none' }}>
-            {
-              taskHeader.map( (task, index) => {
-                return (
-                  task
-                )
-              })
-            }
-          </ul>
-        </div>
+        <AddTask addTaskToList={this.addOneTask} />
+        <TaskList theList={tasks} removeTaskFromList={this.removeOneTask}/>
       </div>
     );
   }
