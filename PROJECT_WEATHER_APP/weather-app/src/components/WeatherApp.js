@@ -106,7 +106,7 @@ class WeatherApp extends Component {
                         <select value={this.state.value} onChange={this.changeCity}>
                             <option value="vancouver">Vancouver, B.C.</option>
                             <option value="miami">Miami, Florida</option>
-                            <option value="berlin">Berlin, Germany</option>
+                            <option value="kyiv">Kyiv, Ukraine</option>
                             <option value="suva">Suva, Fiji Islands</option>
                             <option value="dar es salaam">Dar es Salaam, Tanzania</option>
                         </select>
