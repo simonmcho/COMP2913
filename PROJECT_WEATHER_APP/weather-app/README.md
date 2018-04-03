@@ -18,4 +18,4 @@ This app will display the current and upcoming weather for one of five cities se
 
 ### Room for Improvement
 • I started this application within `App.js`, and then started refactoring/componentizing my code after writing out the application. It would have been better to plan out which components I would have wanted to use    
-• The result of the above means that the logic of the API request is made at the top level of `WeatherApp.js`. I could have handled the logic in `CitySelectionsjs` and then pass data up in to the state of `WeatherApp.js`. This way, the same data can be used when it is passed down to other child components, such as `WeatherStatus.js`        
+• The result of the above means that the logic of the API request is made at the top level of `WeatherApp.js`. I could have handled the logic in `CitySelections.js` and then pass data up in to the state of `WeatherApp.js`. This way, the same data can be used when it is passed down to other child components, such as `WeatherStatus.js`        
