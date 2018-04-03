@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Displays same request state
 class SameRequest extends Component { 
     render() {
         return (

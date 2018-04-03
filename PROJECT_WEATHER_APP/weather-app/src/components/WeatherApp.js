@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import CitySelections from '../components/CitySelections';
 import WeatherStatus from '../components/WeatherStatus';
 import SameRequest from '../components/SameRequest';
 import BadRequest from '../components/BadRequest';
 
+// Contains the entire Weather App
 class WeatherApp extends Component {
     constructor(props) {
         super(props);
@@ -100,37 +102,26 @@ class WeatherApp extends Component {
         
         return (
             <div style={{ maxWidth: '50%', margin: '0 auto', marginTop: '25px' }}>
-                <h2 style={{ textAlign: 'center' }}>Get Weather Status from these 5 cities!</h2>
-                <div style={{ textAlign: 'center' }} >
-                    <form onSubmit={this.handleSubmit}>
-                        <select value={this.state.value} onChange={this.changeCity}>
-                            <option value="vancouver">Vancouver, B.C.</option>
-                            <option value="miami">Miami, Florida</option>
-                            <option value="kyiv">Kyiv, Ukraine</option>
-                            <option value="suva">Suva, Fiji Islands</option>
-                            <option value="dar es salaam">Dar es Salaam, Tanzania</option>
-                        </select>
-                        <input type="submit" value="Get Weather!" />
-                    </form>
-                </div>
+                <CitySelections submitCity={this.handleSubmit} changeCity={this.changeCity} value={this.state.value}/>
                 {
+                    // Show only if API request for same city was attempted
                     !requestMade && 
                     <SameRequest />
                 }
                 {
+                    // Show status as long as the API response was good
                     isGoodRequest ?
-                        <WeatherStatus 
-                            currentCity={this.state.currentCity}
-                            currentLocation={weatherState.location}
-                            showWeather={showWeather}
-                            forecast={weatherState.forecast}
-                            nextForecast={weatherState.nextForecast}
-                            temperature={weatherState.temperature}
-                            conditionCode={weatherState.conditionCode}
-                            convertToCelsius={this.convertToCelsius}
-                        />
-                        :
-                        <BadRequest errorMessage={errorMessage}/>
+                    <WeatherStatus 
+                        currentCity={this.state.currentCity}
+                        currentLocation={weatherState.location}
+                        showWeather={showWeather}
+                        forecast={weatherState.forecast}
+                        nextForecast={weatherState.nextForecast}
+                        temperature={weatherState.temperature}
+                        conditionCode={weatherState.conditionCode}
+                        convertToCelsius={this.convertToCelsius}
+                    /> :
+                    <BadRequest errorMessage={errorMessage}/>
                 }
             </div>
         )

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Displays bad request state
 class BadRequest extends Component { 
     render() {
         return (
