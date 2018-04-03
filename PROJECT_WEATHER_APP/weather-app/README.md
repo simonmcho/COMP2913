@@ -8,7 +8,7 @@ This app will display the current and upcoming weather for one of five cities se
 ## How to get started
 • Install dependencies by running `npm install`. I recommend `yarn install` for a faster installation    
 • Run the app with `yarn start`. The `npm` command can work too            
-• Reference [Yahoo Weather API Developer Documentation] (https://developer.yahoo.com/weather/) for details    
+• Reference [Yahoo Weather API Developer Documentation](https://developer.yahoo.com/weather/) for details    
     
 ### User stories
 [x] When selecting one of the cities from the dropdown, the view should display the weather information for that specific city    
