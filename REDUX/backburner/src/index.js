@@ -11,7 +11,7 @@ import registerServiceWorker from './registerServiceWorker';
 const store = createStore(backburner);
 
 ReactDOM.render(
-    (<Provider>
+    (<Provider store={store}>
         <App />
     </Provider>
     ), 

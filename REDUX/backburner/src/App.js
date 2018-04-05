@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import BackBurnerContainer from './components/BackburnerContainer';
+import BackBurnerContainer from './components/BackBurnerContainer';
 
 class App extends Component {
   render() {

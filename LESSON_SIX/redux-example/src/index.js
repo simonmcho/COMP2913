@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import weather from './reducers/weather.js';
+
 import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
