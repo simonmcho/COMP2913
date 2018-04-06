@@ -3,13 +3,13 @@ const DEFAULT_STATE = {
 }
 
 const backburner = (state = DEFAULT_STATE, action) => {
-    // console.log(action)
+    
     switch(action.type) {
         case "ITEM_ADD": {
             const newState = Object.assign({}, state, {
-                list: action.list
+                list: DEFAULT_STATE.list.push(action.value) 
             });
-
+            console.log(action);
             return newState;
             }
         default: {

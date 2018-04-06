@@ -1,9 +1,11 @@
 export default {
-    addItemToList(dispatch) {
-        console.log(dispatch)
+
+    addItemToList(dispatch, value) {
+        // console.log(dispatch)
+        // console.log(value);
         dispatch({
             type: "ITEM_ADD",
-            list: [{ name: "First Item", number: 1}]
+            list: value 
         });
     } 
 };
