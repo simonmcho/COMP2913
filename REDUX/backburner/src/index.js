@@ -10,6 +10,11 @@ import registerServiceWorker from './registerServiceWorker';
 
 const store = createStore(backburner);
 
+store.subscribe( () => {
+    console.log("STORE CHANGED");
+    console.log(store.getState());
+})
+
 ReactDOM.render(
     (<Provider store={store}>
         <App />

@@ -10,7 +10,7 @@ class BackBurner extends Component {
     
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
+
     }
 
     handleClick() {
@@ -28,26 +28,21 @@ class BackBurner extends Component {
 
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        this.handleClick();
-
-    }
-
     render() {
+      
         return (
             <div>
                 <ul>
                     {
+                        
                         this.props.listOfItems.map( item => {
                             return (
-                                <li key={item.name}>{item.name}</li>
+                                <li key={item}>{item}</li>
                             )
                         })
                     }
                 </ul>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={e => { e.preventDefault()} }>
                     <input name="itemToAdd" type="text" value={this.state.itemToAdd} onChange={this.handleChange} />
                     <button onClick={this.handleClick}>ADD ITEM</button>
                 </form>
