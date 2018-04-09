@@ -5,20 +5,20 @@ import {
 } from 'react-router-dom';
 
 import HomeView from '../views/HomeView';
-import CountriesList from '../views/CountriesList';
-import StopWatch from '../views/StopWatch';
-import WeatherApp from '../views/WeatherApp';
-import NotFound from '../views/NotFound';
+import CountriesListView from '../views/CountriesListView';
+import StopWatchView from '../views/StopWatchView';
+import WeatherAppView from '../views/WeatherAppView';
+import NotFoundView from '../views/NotFoundView';
 
 class AppSwitcher extends React.Component {
     render() {
         return (
             <Switch>
                 <Route path="/" exact component={HomeView} />
-                <Route path="/countries-list" exact component={CountriesList} />
-                <Route path="/stop-watch" exact component={StopWatch} />
-                <Route path="/weather-app" exact component={WeatherApp} />
-                <Route exact component={NotFound} />
+                <Route path="/countries-list" exact component={CountriesListView} />
+                <Route path="/stop-watch" exact component={StopWatchView} />
+                <Route path="/weather-app" exact component={WeatherAppView} />
+                <Route exact component={NotFoundView} />
             </Switch>
         )
     }

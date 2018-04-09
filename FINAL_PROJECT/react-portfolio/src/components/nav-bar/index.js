@@ -12,7 +12,6 @@ class NavBar extends React.Component {
                         <NavLink 
                         to="/" 
                         exact 
-                        onlyActiveOnIndex
                         activeStyle={{
                             fontWeight: 'bold',
                             color: 'red'
