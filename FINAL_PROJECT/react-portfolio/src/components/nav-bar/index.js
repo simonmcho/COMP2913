@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class NavBar extends React.Component {
 
@@ -9,13 +9,42 @@ class NavBar extends React.Component {
             <div>
                 <ul>
                     <li>
-                        <Link to="/countries-list">Countries Search App</Link>
+                        <NavLink 
+                        to="/" 
+                        exact 
+                        onlyActiveOnIndex
+                        activeStyle={{
+                            fontWeight: 'bold',
+                            color: 'red'
+                           }}
+                        >Home</NavLink>
                     </li>
                     <li>
-                        <Link to="/stop-watch">Stop Watch App</Link>
+                        <NavLink 
+                        to="/countries-list"
+                        activeStyle={{
+                            fontWeight: 'bold',
+                            color: 'red'
+                           }}
+                        >Countries Search App</NavLink>
                     </li>
                     <li>
-                        <Link to="/weather-app">Weather App</Link>
+                        <NavLink 
+                        to="/stop-watch"
+                        activeStyle={{
+                            fontWeight: 'bold',
+                            color: 'red'
+                           }}
+                           >Stop Watch App</NavLink>
+                    </li>
+                    <li>
+                        <NavLink 
+                        to="/weather-app"
+                        activeStyle={{
+                            fontWeight: 'bold',
+                            color: 'red'
+                           }}
+                           >Weather App</NavLink>
                     </li>
                 </ul>
             </div>

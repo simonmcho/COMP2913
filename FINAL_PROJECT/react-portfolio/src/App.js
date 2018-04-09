@@ -9,14 +9,12 @@ import AppSwitcher from './components/app-switcher';
 class App extends Component {
   render() {
     return (
-      <div className="App">
         <Router>
           <div className="main-body">
             <NavBar />
             <AppSwitcher />
           </div>
         </Router>
-      </div>
     );
   }
 }
