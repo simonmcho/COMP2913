@@ -6,7 +6,7 @@ const DEFAULT_STATE = {
 };
 
 const weather = (state = DEFAULT_STATE, action) => {
-
+    
     switch(action.type) {
         case "WEATHER_FORECAST_FETCH_SUCCESS": {
             const newState = Object.assign({}, state, {
