@@ -12,7 +12,7 @@ class CountriesList extends Component {
       showFrench: false
     }
 
-    this.getAmericas = this.getAmericas.bind(this);
+    //this.getAmericas = this.getAmericas.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.searchForCountry = this.searchForCountry.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,18 +20,18 @@ class CountriesList extends Component {
     this.handleBlur = this.handleBlur.bind(this);
   }
   
-  getAmericas() {
-    this.setState({
-      showSpinner: true
-    })
-    axios.get('https://restcountries.eu/rest/v2/name/america')
-    .then((res)=> {
-      this.setState({
-        countries: res.data,
-        showSpinner: false
-      });
-    });
-  }
+  // getAmericas() {
+  //   this.setState({
+  //     showSpinner: true
+  //   })
+  //   axios.get('https://restcountries.eu/rest/v2/name/america')
+  //   .then((res)=> {
+  //     this.setState({
+  //       countries: res.data,
+  //       showSpinner: false
+  //     });
+  //   });
+  // }
 
   searchForCountry() {
 
@@ -43,19 +43,25 @@ class CountriesList extends Component {
     // For handling empty searches
     const apiToUse = queryValue === '' ?  `https://restcountries.eu/rest/v2/all` : `https://restcountries.eu/rest/v2/name/${queryValue}`;
     
-    axios.get(apiToUse)
-      .then((res) => {
+    this.props.onFetchSearchedCountries(apiToUse);
 
-        this.setState({
-          countries: res.data,
-          showSpinner: false
-        })
-      })
-      .catch((error) => {
-          this.setState({
-            showSpinner: false
-          })
-      })
+    this.setState({
+      showSpinner: this.props.showSpinner
+    })
+
+    // axios.get(apiToUse)
+    //   .then((res) => {
+
+    //     this.setState({
+    //       countries: res.data,
+    //       showSpinner: false
+    //     })
+    //   })
+    //   .catch((error) => {
+    //       this.setState({
+    //         showSpinner: false
+    //       })
+    //   })
   }
   
   handleChange(event) {
@@ -106,7 +112,7 @@ class CountriesList extends Component {
   render() {
     
     const { countries, showSpinner } = this.state;
-    console.log(this.props.allCountries);
+    
     return (
       <div>
         <h4>
@@ -126,6 +132,7 @@ class CountriesList extends Component {
           <button type="submit" onClick={this.searchForCountry}>Search!</button>
         </form>
         {
+          this.props.allCountries !== undefined &&
           this.props.allCountries.map( country => {
               return (
                 <li key={country.alpha2Code + `-` + country.numericCode} id={country.alpha2Code + `-` + country.numericCode}>

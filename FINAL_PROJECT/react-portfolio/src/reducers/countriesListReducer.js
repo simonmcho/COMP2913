@@ -1,16 +1,24 @@
 const DEFAULT_STATE = {
-    searchedCountries: []
+    searchedCountries: [],
+    showSpinner: false
 };
 
 const countriesListReducer = (state = DEFAULT_STATE, action) => {
-    console.warn("REDUCER HAS STATE BELOW")
-    console.warn(state);
-    console.warn(action);
+
    switch(action.type) {
-       case "ALL_COUNTRIES": {
+       case "COUNTRIES_LIST/COUNTRIES_ALL": {
            const newState = Object.assign({}, state, {
-            searchedCountries: state.searchedCountries.concat(action.countries)
+            searchedCountries: action.countries,
+            showSpinner: action.showSpinner
            });
+
+           return newState;
+       }
+       case "COUNTRIES_LIST/COUNTRIES_SEARCHED": {
+           const newState = Object.assign({}, state, {
+               searchedCountries: action.countries,
+               showSpinner: action.showSpinner
+           })
 
            return newState;
        }
