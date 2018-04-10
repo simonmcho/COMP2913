@@ -1,6 +1,6 @@
 import React from 'react';
 
-import StopWatch from './scenes/StopWatch';
+import StopWatch from './components/StopWatch';
 
 class StopWatchScene extends React.Component {
   render() {

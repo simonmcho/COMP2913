@@ -1,6 +1,6 @@
 import React from 'react';
 
-import WeatherApp from './scenes/WeatherApp';
+import WeatherApp from './components/WeatherApp';
 
 class WeatherAppScene extends React.Component {
 

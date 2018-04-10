@@ -5,7 +5,8 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import countriesListReducer from './components/reducers/countriesListReducer';
+import countriesListReducer from './reducers/countriesListReducer.js';
+
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 

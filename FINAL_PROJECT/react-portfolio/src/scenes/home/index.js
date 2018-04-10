@@ -1,6 +1,6 @@
 import React from 'react';
-// import Home from '../applications/home/Home';
-import Home from './scenes/Home';
+
+import Home from './components/Home';
 
 class HomeScene extends React.Component {
   render() {
