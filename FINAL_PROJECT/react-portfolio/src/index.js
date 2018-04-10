@@ -5,18 +5,18 @@ import './index.css';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 
-import reducer from './components/reducers/reducer';
+import countriesListReducer from './components/reducers/countriesListReducer';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(reducer);
+const store = createStore(countriesListReducer);
 
 store.subscribe(()=> {
     console.log("NEW STORE CREATED!")
 });
 
 ReactDOM.render((
-<Provider>
+<Provider store={store}>
     <App />
 </Provider>), 
 document.getElementById('root'));

@@ -92,21 +92,21 @@ class CountriesList extends Component {
   }
   
   componentWillMount() {
+    this.props.onFetchAllCountries();
+    // axios.get('https://restcountries.eu/rest/v2/all')
+    //   .then( (res, req)=> {
     
-    axios.get('https://restcountries.eu/rest/v2/all')
-      .then( (res, req)=> {
-    
-        this.setState({
-          countries: res.data
-        });
+    //     this.setState({
+    //       countries: res.data
+    //     });
 
-      });
+    //   });
   }
 
   render() {
     
     const { countries, showSpinner } = this.state;
-    
+    console.log(this.props.allCountries);
     return (
       <div>
         <h4>
@@ -125,13 +125,27 @@ class CountriesList extends Component {
           />
           <button type="submit" onClick={this.searchForCountry}>Search!</button>
         </form>
-        <input 
-          name="showFrench" 
-          type="checkbox" 
-          checked={this.state.showFrench} 
-          onChange={this.handleChange}
-          />
         {
+          this.props.allCountries.map( country => {
+              return (
+                <li key={country.alpha2Code + `-` + country.numericCode} id={country.alpha2Code + `-` + country.numericCode}>
+                  {
+                    country.name
+                  }
+                </li>
+              )
+          })
+        }
+        {/* <div style={{ marginBottom: '20px' }}>
+          <input 
+            name="showFrench" 
+            type="checkbox" 
+            checked={this.state.showFrench} 
+            onChange={this.handleChange}
+            /> 
+          <p style={{ display: 'inline', fontStyle : 'oblique' }} >Show French</p>
+        </div> */}
+        {/* {
           countries.map( (country)=> {
             return (
               <li key={country.alpha2Code + `-` + country.numericCode} id={country.alpha2Code + `-` + country.numericCode}>
@@ -141,7 +155,7 @@ class CountriesList extends Component {
               </li>
             )
           })
-        }
+        } */}
       </div>
     );
   }

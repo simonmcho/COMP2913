@@ -14,7 +14,7 @@ class NavBar extends React.Component {
                         exact 
                         activeStyle={{
                             fontWeight: 'bold',
-                            color: 'red'
+                            color: 'green'
                            }}
                         >Home</NavLink>
                     </li>
@@ -23,7 +23,7 @@ class NavBar extends React.Component {
                         to="/countries-list"
                         activeStyle={{
                             fontWeight: 'bold',
-                            color: 'red'
+                            color: 'green'
                            }}
                         >Countries Search App</NavLink>
                     </li>
@@ -32,7 +32,7 @@ class NavBar extends React.Component {
                         to="/stop-watch"
                         activeStyle={{
                             fontWeight: 'bold',
-                            color: 'red'
+                            color: 'green'
                            }}
                            >Stop Watch App</NavLink>
                     </li>
@@ -41,7 +41,7 @@ class NavBar extends React.Component {
                         to="/weather-app"
                         activeStyle={{
                             fontWeight: 'bold',
-                            color: 'red'
+                            color: 'green'
                            }}
                            >Weather App</NavLink>
                     </li>

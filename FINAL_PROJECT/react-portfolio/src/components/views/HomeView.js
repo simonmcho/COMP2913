@@ -1,10 +1,11 @@
 import React from 'react';
+import Home from '../applications/home/Home';
 
 class HomeView extends React.Component {
   render() {
     return (
         <div style={{ textAlign: 'center' }} >
-            <p>Home</p>
+            <Home />
         </div>
     );
   }
