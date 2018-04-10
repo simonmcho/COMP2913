@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import NavBar from './components/nav-bar';
-import AppSwitcher from './components/app-switcher';
-// import logo from './logo.svg';
-// import './App.css';
+import AppSwitcher from './AppSwitcher';
 
 class App extends Component {
   render() {

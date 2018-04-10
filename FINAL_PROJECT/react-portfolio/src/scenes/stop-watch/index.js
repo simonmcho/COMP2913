@@ -1,8 +1,8 @@
 import React from 'react';
 
-import StopWatch from '../applications/stop-watch/StopWatch';
+import StopWatch from './scenes/StopWatch';
 
-class StopWatchView extends React.Component {
+class StopWatchScene extends React.Component {
   render() {
     return (
         <div style={{ textAlign : 'center' }} >
@@ -16,4 +16,4 @@ class StopWatchView extends React.Component {
   }
 }
 
-export default StopWatchView;
+export default StopWatchScene;

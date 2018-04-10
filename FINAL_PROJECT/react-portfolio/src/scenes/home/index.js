@@ -1,7 +1,8 @@
 import React from 'react';
-import Home from '../applications/home/Home';
+// import Home from '../applications/home/Home';
+import Home from './scenes/Home';
 
-class HomeView extends React.Component {
+class HomeScene extends React.Component {
   render() {
     return (
         <div style={{ textAlign: 'center' }} >
@@ -11,4 +12,4 @@ class HomeView extends React.Component {
   }
 }
 
-export default HomeView;
+export default HomeScene;

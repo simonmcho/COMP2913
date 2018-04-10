@@ -1,9 +1,10 @@
 import React from 'react';
 
 //import CountriesList from '../applications/countries-list/CountriesList';
-import CountriesListContainer from '../applications/countries-list/CountriesListContainer';
+//import CountriesListContainer from '../applications/countries-list/CountriesListContainer';
+import CountriesListContainer from './scenes/CountriesListContainer';
 
-class CountriesListView extends React.Component {
+class CountriesListScene extends React.Component {
   render() {
     return (
         <div style={{ textAlign : 'center' }} >
@@ -14,4 +15,4 @@ class CountriesListView extends React.Component {
   }
 }
 
-export default CountriesListView;
+export default CountriesListScene;

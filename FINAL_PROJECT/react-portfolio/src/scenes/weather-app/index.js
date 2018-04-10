@@ -1,8 +1,8 @@
 import React from 'react';
 
-import WeatherApp from '../applications/weather-app/WeatherApp';
+import WeatherApp from './scenes/WeatherApp';
 
-class WeatherAppView extends React.Component {
+class WeatherAppScene extends React.Component {
 
   render() {
     return (
@@ -15,4 +15,4 @@ class WeatherAppView extends React.Component {
 
 }
 
-export default WeatherAppView;
+export default WeatherAppScene;
