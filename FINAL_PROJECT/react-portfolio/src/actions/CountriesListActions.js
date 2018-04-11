@@ -2,6 +2,11 @@ import axios from 'axios';
 
 export default {
     fetchAllCountries (dispatch) {
+        dispatch({
+            type: "COUNTRIES_LIST/COUNTRIES_ALL",
+            showSpinner: true 
+        });
+
         axios.get(`https://restcountries.eu/rest/v2/all`)
                 .then(
                     response => {
@@ -12,29 +17,41 @@ export default {
                             showSpinner: false
                         });
                     }
-                ).catch(error => {
-                    dispatch({
-                        type: "COUNTRIES_LIST/COUNTRIES_ALL",
-                        showSpinner: true
-                    });
-                });
+                ).catch(
+                    error => {
+                        const listOfCountries = [];
+                        dispatch({
+                            type: "COUNTRIES_LIST/COUNTRIES_ALL",
+                            countries: listOfCountries,
+                            showSpinner: false
+                        })
+                    }
+                );
     },
     fetchSearchedCountries (dispatch, apiToUse) {
-        // console.warn("ACTION BELOW!!");
-        // console.log(apiToUse);
+        dispatch({
+            type: "COUNTRIES_LIST/COUNTRIES_SEARCHED",
+            showSpinner: true 
+        });
+        
         axios.get(apiToUse)
             .then(
                 response => {
                     const listOfCountries = response.data;
                     dispatch({
                         type: "COUNTRIES_LIST/COUNTRIES_SEARCHED",
-                        countries: listOfCountries
+                        countries: listOfCountries,
+                        showSpinner: false
                     });
-            }).catch(error => {
-                dispatch({
-                    type: "COUNTRIES_LIST/COUNTRIES_SEARCHED",
-                    showSpinner: true
-                });
-            });
+            }).catch(
+                error => {
+                    const listOfCountries = [];
+                    dispatch({
+                        type: "COUNTRIES_LIST/COUNTRIES_SEARCHED",
+                        countries: listOfCountries,
+                        showSpinner: false
+                    })
+                }
+            );
     }
 }

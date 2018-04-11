@@ -6,44 +6,44 @@ class NavBar extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{ textAlign: 'center' }}>
                 <ul>
-                    <li>
-                        <NavLink 
-                        to="/" 
-                        exact 
-                        activeStyle={{
-                            fontWeight: 'bold',
-                            color: 'green'
-                           }}
-                        >Home</NavLink>
+                    <li style={{ display: 'inline', marginRight: '10px' }}>
+                        <NavLink to="/" 
+                                 exact 
+                                activeStyle={{
+                                    fontWeight: 'bold',
+                                    color: 'green'
+                                }}>
+                        Home
+                        </NavLink>
                     </li>
-                    <li>
-                        <NavLink 
-                        to="/countries-list"
-                        activeStyle={{
-                            fontWeight: 'bold',
-                            color: 'green'
-                           }}
-                        >Countries Search App</NavLink>
+                    <li style={{ display: 'inline', marginRight: '10px' }}>
+                        <NavLink to="/countries-list"
+                                activeStyle={{
+                                    fontWeight: 'bold',
+                                    color: 'green'
+                                }}>
+                        Countries Search App
+                        </NavLink>
                     </li>
-                    <li>
-                        <NavLink 
-                        to="/stop-watch"
-                        activeStyle={{
-                            fontWeight: 'bold',
-                            color: 'green'
-                           }}
-                           >Stop Watch App</NavLink>
+                    <li style={{ display: 'inline', marginRight: '10px' }}>
+                        <NavLink to="/stop-watch"
+                                activeStyle={{
+                                    fontWeight: 'bold',
+                                    color: 'green'
+                                }}>
+                        Stop Watch App
+                        </NavLink>
                     </li>
-                    <li>
-                        <NavLink 
-                        to="/weather-app"
-                        activeStyle={{
-                            fontWeight: 'bold',
-                            color: 'green'
-                           }}
-                           >Weather App</NavLink>
+                    <li style={{ display: 'inline', marginRight: '10px' }}>
+                        <NavLink to="/weather-app"
+                                activeStyle={{
+                                    fontWeight: 'bold',
+                                    color: 'green'
+                                }}>
+                        Weather App
+                        </NavLink>
                     </li>
                 </ul>
             </div>
