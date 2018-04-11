@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios'; 
+//import axios from 'axios'; 
 
 class CountriesList extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class CountriesList extends Component {
 
   render() {
     
-    const { countries, showSpinner } = this.state;
+    const { showSpinner } = this.state;
     
     return (
       <div>

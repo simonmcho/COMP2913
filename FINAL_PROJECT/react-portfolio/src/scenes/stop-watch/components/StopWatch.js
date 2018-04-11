@@ -5,10 +5,9 @@ class StopWatch extends Component {
         super(props);
 
         const stopText = "STOP";
-        const startText = "START";
         const startTime = 0;
 
-        this.theTimer;
+        this.theTimer = 0;
 
         this.state = {
             timerText: stopText,
@@ -83,6 +82,12 @@ class StopWatch extends Component {
     componentWillMount() {
         // Start timer first time? Not sure if this is best
         this.theTimer = setInterval(this.startTimer, 1000);
+        
+    }
+
+    // Must clear all intervals if another app is mounted
+    componentWillUnmount() {
+        clearInterval(this.theTimer);
     }
 
     render() {

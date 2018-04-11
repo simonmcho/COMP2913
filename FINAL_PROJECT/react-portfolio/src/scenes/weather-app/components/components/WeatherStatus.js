@@ -50,6 +50,8 @@ class WeatherStatus extends Component {
                                      {rearrangedDate} - {forecast.text}, {lowTemp}, {highTemp} <WeatherIcon name="yahoo" iconId={forecast.code} flip="horizontal" rotate="90" style={{ marginLeft: '5px' }}/>
                                 </li>
                             )
+                        } else {
+                            return false;
                         }
 
                     })
