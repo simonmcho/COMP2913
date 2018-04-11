@@ -9,7 +9,9 @@ import DogView from './DogView';
 
 // We have access to this.props.match because this component is rendered under Routes
 class Dogs extends Component {
+
   render() {
+    console.log(this.props.match.url);
     return (
         <div>
             <p>This is the Dogs view</p>
